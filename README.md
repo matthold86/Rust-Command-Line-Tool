@@ -1,12 +1,14 @@
-# Rust Command Line Tool
+# College Basketball Database - Rust Command Line Tool
 
 [![Format](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/format.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/format.yml)  [![Lint](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/lint.yml)  [![Tests](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/tests.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/tests.yml)
 
 ## Summary
 
-The project is an introduction to Rust packaging and Rust command line tools. The objective of this tool is to randomly generate a list of fruits to be put into a fruit salad. The user inputs a number of fruits and the list of fruits is printed in the command line. The user is prompted to evaluate the list determine if they like the fruit salad. If they do, a user input "yes" will exit the script. If they do not like the salad, a user input "no" will generate a new random fruit salad. The script is looped until the user is satisfied.
+This project creates a command line tool to interact with a rusqlite database for college basketball statistics.  The data included in this database includes every D1 college basketball team from 2002 to 2017. Data was scraped from the KenPom Advanced Basketball Analytics website.
 
-To learn more about the random fruit generator visit this repository: [cli-salad](https://github.com/nogibjj/rust-data-engineering/blob/main/cli-salad/src/lib.rs)
+The objective of this tool is to allow a user to interact with the college basketball statistics database using the command line interface. The user will pass SQL queries into the terminal and the commands will be performed on the rusqlite database. The data is re-loaded from a csv file after every run, so database manipulation while the program is running is allowed and encouraged.
+
+
 
 
 ## Structure
@@ -31,21 +33,62 @@ mjh140-cmdline-tool/
 ```
 
 ## Results
-This script is configured to run on Github Codespaces or directly on VS Code. If running locally, ensure Rust is installed on your local system.
 
-The script takes one parameter: number of fruit to include in the fruit salad. For this example we will use `5`. In the terminal, run the following command:
+When the code is first ran, data is loaded from a csv file into the kenpom database. Belos is a picture of the initial rusqlite database:
 
-`cargo run -- -n 5`
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/c21591e7-5f57-461b-8e98-90dd430c671d)
 
-![image](https://github.com/nogibjj/mjh140-cmdline-tool/assets/114833075/8d2b2107-015b-464e-b747-9b74c6699677)
+After the database connection has been made and the data has been loaded, the terminal becomes a SQL query interface to interact with the database. The terminal will show the following prompt to indicate that the CLI is operational:
 
-Within the terminal, the list of fruit will be printed and the user will be given the option to regenerate a new list or accept the provided list. To regenerate the list, type `no`. To accept the list type `yes`
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/d8d36315-0859-4461-8818-117b13614a2c)
 
-![image](https://github.com/nogibjj/mjh140-cmdline-tool/assets/114833075/28c5564f-c29f-4794-9050-b8e5686f31fa)
+The prompt says that the user has 10 queries before the script will exit, but the user will be prompted to continue if the quota of 10 queries is reached. Lets walk through some SQL commands and see how they appear on the terminal. Below you'll find examples of SQL commands executed on the database as well as a picture of the returned output from the terminal.
 
-The fruit salad will regenerate as many times as needed until the list is accepted.
+___
+`SELECT year, team, seed FROM kenpom_stats WHERE team = 'Michigan';`
 
-![image](https://github.com/nogibjj/mjh140-cmdline-tool/assets/114833075/a7457112-382a-44ab-a080-a4035319c80c)
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/d19c3d93-30d4-4b3f-911b-6543bd9c9b63)
+___
+`UPDATE kenpom_stats SET seed = NULL WHERE seed = "";`
+
+`SELECT year, team, seed FROM kenpom_stats WHERE team = 'Michigan';`
+
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/a9332479-9830-43b2-9cf0-a3e59bd2b3a2)
+___
+`INSERT INTO kenpom_stats (year, team, wins, losses) VALUES (2018, 'Villinova', 36, 4);`
+
+`SELECT year, team, wins, losses, conference FROM kenpom_stats WHERE year = 2018;`
+
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/ed9f93a8-23ea-4fff-9d54-5b5cf68db172)
+___
+`DELETE FROM kenpom_stats WHERE year = 2018;`
+
+`SELECT year, team, wins, losses, conference FROM kenpom_stats WHERE year = 2018;`
+
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/ed5230f4-9928-46b6-9f8c-eba8610da1a0)
+___
+`Exit`
+
+![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/dff8a1cd-9bc6-479c-af68-9ddd74ab56a6)
+___
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
