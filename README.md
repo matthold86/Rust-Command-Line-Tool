@@ -36,7 +36,7 @@ mjh140-rusqliteCLI/
 
 ## Results
 
-When the code is first ran, data is loaded from a csv file into the kenpom database. Belos is a picture of the initial rusqlite database:
+When the code is first executed, data is loaded from a csv file into the kenpom database. Below is a picture of the initial rusqlite database:
 
 ![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/c21591e7-5f57-461b-8e98-90dd430c671d)
 
