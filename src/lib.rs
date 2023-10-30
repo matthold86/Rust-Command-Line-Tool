@@ -124,6 +124,7 @@ pub fn sql_query(conn: &Connection, query: &str) -> Result<(), Box<dyn std::erro
     let mut stmt = conn.prepare(query)?;
     let mut rows = stmt.query([])?;
     let mut count = 0;
+    println!("\n");
     while let Some(row) = rows.next()? {
         println!("{:?}", row);
         count += 1;
@@ -133,5 +134,6 @@ pub fn sql_query(conn: &Connection, query: &str) -> Result<(), Box<dyn std::erro
             break; // Exit the loop after printing 5 rows
         }
     }
+    println!("\n");
     Ok(())
 }
