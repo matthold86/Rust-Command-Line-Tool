@@ -1,6 +1,6 @@
 # College Basketball Database - Rust Command Line Tool
 
-[![Format](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/format.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/format.yml)  [![Lint](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/lint.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/lint.yml)  [![Tests](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/tests.yml/badge.svg)](https://github.com/nogibjj/mjh140-cmdline-tool/actions/workflows/tests.yml)
+[![Format](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/format.yml/badge.svg)](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/format.yml)  [![Lint](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/lint.yml/badge.svg)](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/lint.yml)   [![Tests](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/tests.yml/badge.svg)](https://github.com/nogibjj/mjh140-rusqliteCLI/actions/workflows/tests.yml)
 
 ## Summary
 
