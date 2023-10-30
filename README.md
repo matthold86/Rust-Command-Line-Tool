@@ -13,7 +13,7 @@ The objective of this tool is to allow a user to interact with the college baske
 
 ## Structure
 ```text
-mjh140-cmdline-tool/
+mjh140-rusqliteCLI/
 ├── Cargo.lock
 ├── Cargo.toml
 ├── .devcontainer
@@ -24,6 +24,8 @@ mjh140-cmdline-tool/
 │   ├── install.yml
 │   └── tests.yml
 ├── .gitignore
+├── kenpom.csv
+├── kenpom.db
 ├── Makefile
 ├── README.md
 ├── requirements.txt
