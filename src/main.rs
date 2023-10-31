@@ -2,50 +2,33 @@ extern crate kenpoms_analysis;
 use kenpoms_analysis::{create_table, insert_data, sql_query};
 use rusqlite::{Connection, Error};
 use std::io;
-use clap::Parser;
-
-#[derive(Parser)]
-#[clap(
-    version = "1.0",
-    author = "Matthew Holden <matthew.holden@duke.edu>",
-    about = "Create a CLI for college basketball statistics database."
-)]
-
-struct CLIQuery {
-    #[clap(short, long)]
-    query: String,
-}
 
 fn establish_connection() -> Result<Connection, Error> {
+    // Establish database connection
     let conn = Connection::open("kenpom.db")?;
+
+    //Result if successful
     Ok(conn)
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
+    // Establish connection
+    let conn: Connection = establish_connection()?;
 
-    let conn: Connection = match establish_connection() {
-        Ok(conn) => {
-            // The connection is established successfully
-            println!("\n\nConnected to the KenPoms database.\n\n");
-            conn
-        },
-        Err(err) => {
-            // An error occurred when establishing the connection
-            eprintln!("\n\nError opening the database: {:?}\n\n", err);
-            return Ok(())
-        }
-    };
-
-
+    // Create table
     create_table(&conn)?;
 
+    // Initial data dump into rusqlite db
     insert_data(&conn)?;
 
+    // Establish count for loop
     let mut count = 0;
 
+    // Loop 10 times for 10 sql queries
     while count < 10 {
 
         count += 1;
+
         // Print prompt
         let intro = format!("({} of 10) Enter a SQL Query or type 'Exit': ", count);
         println!("{}", intro);
@@ -53,15 +36,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         //read user input
         let mut user_input = String::new();
         io::stdin().read_line(&mut user_input).expect("Failed to read line");
+
+        //Option: Exit
         if user_input.trim() == "Exit" {
             break;
         };
 
-        let query: String = user_input;
-
-
-        //let query = String::from("SELECT year, team, adjust_o FROM kenpom_stats WHERE team = 'Duke';");
-        match sql_query(&conn, &query) {
+        // Execute SQL query and handle exception
+        match sql_query(&conn, &user_input) {
             Ok(_) => {
                 println!("\nQuery executed successfully.\n");
                 continue
@@ -74,7 +56,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
     }
 
+    // Exit Statement
     println!("\nExiting College Basketball Stats CLI\n");
 
+    //Result if successful
     Ok(())
+
 }

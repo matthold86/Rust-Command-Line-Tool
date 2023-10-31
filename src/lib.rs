@@ -45,7 +45,7 @@ pub fn create_table(conn: &Connection) -> Result<(), Box<dyn std::error::Error>>
     let query = format!("CREATE TABLE IF NOT EXISTS kenpom_stats ({})", col_names);
     conn.execute(&query, [])?;
 
-    // Return if successful
+    // Result if successful
     Ok(())
 }
 
@@ -113,7 +113,7 @@ pub fn insert_data(conn: &Connection) -> Result<(), Box<dyn std::error::Error>> 
     // Commit all rows to kenpom.db at once
     tx.commit()?;
 
-    //Return if successful
+    //Result if successful
     Ok(())
 
 }
@@ -129,7 +129,7 @@ pub fn extract_column_info(reader: &mut Reader<File>) -> Result <(String, usize)
     // Format column names into a single string - sql compatible
     let column_names = column_names.join(", ");
 
-    // Return if successful
+    // Result if successful
     Ok((column_names, num_columns))
 }
 
@@ -154,6 +154,6 @@ pub fn sql_query(conn: &Connection, query: &str) -> Result<(), Box<dyn std::erro
     }
     println!("\n");
 
-    //Return if successful
+    //Result if successful
     Ok(())
 }
