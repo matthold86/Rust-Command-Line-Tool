@@ -1,5 +1,5 @@
 extern crate kenpoms_analysis;
-use kenpoms_analysis::{create_table, sql_query};
+use kenpoms_analysis::{create_table, insert_data, sql_query};
 use rusqlite::{Connection, Error};
 use std::io;
 use clap::Parser;
@@ -39,7 +39,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     create_table(&conn)?;
 
-    //insert_data(&conn)?;
+    insert_data(&conn)?;
 
     let mut count = 0;
 
