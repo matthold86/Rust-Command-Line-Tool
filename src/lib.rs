@@ -157,3 +157,32 @@ pub fn sql_query(conn: &Connection, query: &str) -> Result<(), Box<dyn std::erro
     //Result if successful
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rusqlite::Result;
+
+    #[test]
+    fn test_create_table() -> Result<(), Box<dyn std::error::Error>>  {
+        let conn = Connection::open_in_memory()?;
+        create_table(&conn)?;
+        let table_names: Vec<String> = conn
+            .prepare("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")?
+            .query_map([], |row| row.get(0))?
+            .collect::<Result<Vec<String>>>()?;
+        assert_eq!(table_names, vec!["kenpom_stats"]);
+        Ok(())
+    }
+
+    #[test]
+    fn test_insert_data() -> Result<(), Box<dyn std::error::Error>>  {
+        let conn = Connection::open_in_memory()?;
+        create_table(&conn)?;
+        insert_data(&conn)?;
+        let table_length: i64 = conn
+        .query_row("SELECT COUNT(*) FROM kenpom_stats", [], |row| row.get(0))?;
+        assert_eq!(table_length, 5453i64);
+        Ok(())
+    }
+}
