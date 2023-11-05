@@ -8,7 +8,7 @@ This project creates a command line tool to interact with a rusqlite database fo
 
 The objective of this tool is to allow a user to interact with the college basketball statistics database using the command line interface. The user will pass SQL queries into the terminal and the commands will be performed on the rusqlite database. The data is re-loaded from a csv file after every run, so database manipulation while the program is running is allowed and encouraged.
 
-
+Click [here](https://youtu.be/pngTNpaUfbE) for a video walkthrough of the project.
 
 
 ## Structure
@@ -74,23 +74,6 @@ ___
 ![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/dff8a1cd-9bc6-479c-af68-9ddd74ab56a6)
 ___
 
+## GitHub Copilot
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+GitHub Copilot was extremely useful for generating test cases. I provided a description of the test case functionality and copilot was able to generate a robust test with minimal modifications needed. Copilot was also useful for fixing syntax issues in Rust.
