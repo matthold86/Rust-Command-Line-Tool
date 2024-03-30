@@ -8,7 +8,7 @@ This project creates a command line tool to interact with a rusqlite database fo
 
 The objective of this tool is to allow a user to interact with the college basketball statistics database using the command line interface. The user will pass SQL queries into the terminal and the commands will be performed on the rusqlite database. The data is re-loaded from a csv file after every run, so database manipulation while the program is running is allowed and encouraged.
 
-Click [here](https://youtu.be/pngTNpaUfbE) for a video walkthrough of the project.
+Click [here](https://youtu.be/GGBqJJJ7MFY) for a video walkthrough of the project.
 
 
 ## Structure
