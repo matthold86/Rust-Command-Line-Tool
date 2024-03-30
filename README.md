@@ -74,6 +74,3 @@ ___
 ![image](https://github.com/nogibjj/mjh-miniproject8/assets/114833075/dff8a1cd-9bc6-479c-af68-9ddd74ab56a6)
 ___
 
-## GitHub Copilot
-
-GitHub Copilot was extremely useful for generating test cases. I provided a description of the test case functionality and copilot was able to generate a robust test with minimal modifications needed. Copilot was also useful for fixing syntax issues in Rust.
